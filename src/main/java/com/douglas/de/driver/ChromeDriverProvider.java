@@ -23,6 +23,7 @@ public class ChromeDriverProvider implements WebDriverProvider {
         options.addArguments("--disable-gpu");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
 
         WebDriverManager.chromedriver().setup();
         return new ChromeDriver(options);
