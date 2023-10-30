@@ -3,7 +3,6 @@ package com.douglas.de.pages.alerts;
 import com.codeborne.selenide.SelenideElement;
 import com.douglas.de.pages.BasePage;
 import com.douglas.de.pages.MainPage;
-import com.douglas.de.utils.WaitElementTimeout;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.douglas.de.utils.WaitElementTimeout.SMALL;

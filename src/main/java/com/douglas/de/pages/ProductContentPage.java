@@ -15,6 +15,7 @@ public class ProductContentPage extends BasePage {
     @Step
     public List<ProductContent> getProductsInContent() {
         Locators.PRODUCT_GRIDS.shouldHave(CollectionCondition.sizeGreaterThan(0));
+
         return Locators.PRODUCT_TILES
             .shouldHave(CollectionCondition.sizeGreaterThan(0))
             .asDynamicIterable()

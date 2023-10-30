@@ -27,10 +27,10 @@ public class FilterProductsTests extends BaseTest {
     }
 
     @Test(dataProvider = "filterDataProvider")
-    public void checkFilterByCriteriaProducts(String filterValue,
-                                          PerfumePage.PerfumeFilter perfumeFilter,
-                                          String value,
-                                          String fileName) {
+    public void checkFilterProductsByCriteria(String filterValue,
+                                              PerfumePage.PerfumeFilter perfumeFilter,
+                                              String value,
+                                              String fileName) {
         List<ProductInContent> productInContentList =
             perfumePage
                 .filterBy(HIGHLIGHTS, filterValue)

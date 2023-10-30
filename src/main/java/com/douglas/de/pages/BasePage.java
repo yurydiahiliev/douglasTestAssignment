@@ -11,7 +11,6 @@ import static com.douglas.de.utils.PagePaths.getLinkOfPage;
 
 public class BasePage {
 
-    private static CustomConfig uiConfig = ConfigFactory.create(CustomConfig.class);
     private static final Logger log = LoggerFactory.getLogger(BasePage.class);
 
     public static <T extends BasePage> T openPage(Class<T> pageObjectClass) {

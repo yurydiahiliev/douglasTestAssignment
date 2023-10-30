@@ -9,8 +9,6 @@ import java.util.*;
 
 public class PagePaths {
 
-    private static CustomConfig uiConfig = ConfigFactory.create(CustomConfig.class);
-
     private static final Map<Class, String> PAGE_LINK_MAP =
         ImmutableMap.<Class, String>builder()
                     .put(MainPage.class, "de")
@@ -23,7 +21,7 @@ public class PagePaths {
 
     public static String getLinkOfPage(Class pageClass, String... urlParam) {
         if (PAGE_LINK_MAP.containsKey(pageClass))
-            return String.format(uiConfig.baseUrl() + PAGE_LINK_MAP.get(pageClass), urlParam);
+            return String.format(Config.config.baseUrl() + PAGE_LINK_MAP.get(pageClass), urlParam);
         throw new IllegalArgumentException("Unknown page object class: " + pageClass);
     }
 }

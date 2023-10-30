@@ -8,6 +8,7 @@ public class WebDriverFactory {
         String providerClassName;
         String browserProperty = System.getProperty("browser");
         String browser = isNull(browserProperty) ? "chrome" : browserProperty.toLowerCase();
+
         if ("firefox".equals(browser)) {
             providerClassName = FirefoxDriverProvider.class.getName();
         } else {
