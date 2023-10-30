@@ -21,7 +21,8 @@ public class ChromeDriverProvider implements WebDriverProvider {
         options.addArguments("--disable-extensions");
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
-        options.addArguments("--headless");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
 
         WebDriverManager.chromedriver().setup();
         return new ChromeDriver(options);
