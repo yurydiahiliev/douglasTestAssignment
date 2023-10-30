@@ -20,6 +20,8 @@ public class ChromeDriverProvider implements WebDriverProvider {
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-extensions");
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--headless");
 
         WebDriverManager.chromedriver().setup();
         return new ChromeDriver(options);
