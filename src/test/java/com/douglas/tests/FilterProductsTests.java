@@ -14,7 +14,6 @@ import java.util.function.Function;
 import static com.douglas.de.pages.BasePage.openPage;
 import static com.douglas.de.pages.PerfumePage.PerfumeFilter.*;
 import static com.douglas.de.utils.CSVUtils.convertCsvToObj;
-import static com.douglas.de.utils.CSVUtils.convertToCSV;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isIn;
 
@@ -29,7 +28,6 @@ public class FilterProductsTests extends BaseTest {
 
     @Test(dataProvider = "filterDataProvider")
     public void checkFilterByCriteriaProducts(String filterValue,
-                                          int limit,
                                           PerfumePage.PerfumeFilter perfumeFilter,
                                           String value,
                                           String fileName) {
@@ -38,10 +36,8 @@ public class FilterProductsTests extends BaseTest {
                 .filterBy(HIGHLIGHTS, filterValue)
                 .filterBy(perfumeFilter, value)
                 .getProductContentPage()
-                .getProductsInContent(limit).stream()
+                .getProductsInContent().stream()
                 .map(mapToProductContent).toList();
-
-        convertToCSV(productInContentList, fileName);
 
         List<ProductInContent> expectedProductInContentList = convertCsvToObj(fileName);
         assertThat(expectedProductInContentList.get(0), isIn(productInContentList));
@@ -50,15 +46,15 @@ public class FilterProductsTests extends BaseTest {
     @DataProvider
     public Object[][] filterDataProvider() {
         return new Object[][] {
-            {"Sale", 2, PRODUCTART, "Eau de Parfum", "sale_product_type.csv"},
-//            {"Sale", 2, MARKE, "Abercrombie & Fitch", "sale_brand.csv"},
-//            {"Sale", 2, FUR_WEN, "Männlich", "sale_for_whom.csv"},
-//            {"NEU", 2, PRODUCTART, "Duftset", "new_product_type.csv"},
-//            {"NEU", 1, FUR_WEN, "Unisex", "new_for_whom.csv"},
-//            {"Limitiert", 1, PRODUCTART, "Eau de Toilette", "limited_product_type.csv"},
-//            {"Limitiert", 1, MARKE, "Aigner", "limited_brand.csv"},
-//            {"Limitiert", 1, GESCHENK_FUR, "Nikolaus", "limited_present_for.csv"},
-//            {"Limitiert", 1, FUR_WEN, "Männlich", "limited_for_whom.csv"}
+            {"Sale", PRODUCTART, "Eau de Parfum", "sale_product_type.csv"},
+            {"Sale", MARKE, "Abercrombie & Fitch", "sale_brand.csv"},
+            {"Sale", FUR_WEN, "Männlich", "sale_for_whom.csv"},
+            {"NEU", PRODUCTART, "Duftset", "new_product_type.csv"},
+            {"NEU", FUR_WEN, "Unisex", "new_for_whom.csv"},
+            {"Limitiert", PRODUCTART, "Eau de Toilette", "limited_product_type.csv"},
+            {"Limitiert", MARKE, "Aigner", "limited_brand.csv"},
+            {"Limitiert", GESCHENK_FUR, "Nikolaus", "limited_present_for.csv"},
+            {"Limitiert", FUR_WEN, "Männlich", "limited_for_whom.csv"}
         };
     }
 

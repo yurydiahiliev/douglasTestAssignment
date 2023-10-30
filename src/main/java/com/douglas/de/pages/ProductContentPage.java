@@ -13,16 +13,18 @@ import static com.douglas.de.utils.CommonElement.getText;
 public class ProductContentPage extends BasePage {
 
     @Step
-    public List<ProductContent> getProductsInContent(int limit) {
-        return Locators.PRODUCT_TILES.shouldHave(CollectionCondition.sizeGreaterThan(0))
+    public List<ProductContent> getProductsInContent() {
+        Locators.PRODUCT_GRIDS.shouldHave(CollectionCondition.sizeGreaterThan(0));
+        return Locators.PRODUCT_TILES
+            .shouldHave(CollectionCondition.sizeGreaterThan(0))
             .asDynamicIterable()
             .stream()
             .map(ProductContent::new)
-            .limit(limit)
             .toList();
     }
 
     interface Locators {
+        ElementsCollection PRODUCT_GRIDS = $$(".product-grid__listing-content .product-grid");
         ElementsCollection PRODUCT_TILES = $$(".product-tile");
     }
 
