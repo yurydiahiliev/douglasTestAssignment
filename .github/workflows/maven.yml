@@ -19,8 +19,12 @@ jobs:
         java-version: 17
         distribution: 'adopt'
 
-    - name: Install Chrome
-      uses: browser-actions/setup-chrome@latest
+    - name: Install Google Chrome
+      run: |
+        set -ex
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install ./google-chrome-stable_current_amd64.deb
+      if: runner.os == 'Linux'
 
     - name: Build and Run UI Tests
       run: mvn clean install
