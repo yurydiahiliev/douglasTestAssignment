@@ -26,6 +26,19 @@ jobs:
         sudo apt install ./google-chrome-stable_current_amd64.deb
       if: runner.os == 'Linux'
 
+    - name: Install Xvfb
+      run: |
+        set -ex
+        sudo apt-get install xvfb
+      if: runner.os == 'Linux'
+
+    - name: Start Xvfb
+      run: |
+        set -ex
+        Xvfb :99 -ac -screen 0 1920x1080x16 &
+        export DISPLAY=:99
+      if: runner.os == 'Linux'
+
     - name: Build and Run UI Tests
       run: mvn clean install
 
